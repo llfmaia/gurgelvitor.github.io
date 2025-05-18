@@ -95,74 +95,193 @@
             </table>
             </div>
         </section>
-        <section>
-            <div class="container">
-                <h1>Calculadora de Calorias</h1>
-                
-                <div class="form-group">
-                <label>Peso (kg):</label>
-                <input type="number" id="peso" placeholder="Ex: 70">
-                </div>
+<section>
+  <div class="container">
+    <h1>Calculadora de Calorias</h1>
 
-                <div class="form-group">
-                <label>Altura (cm):</label>
-                <input type="number" id="altura" placeholder="Ex: 175">
-                </div>
+    <div class="form-group">
+      <label>Peso atual (kg):</label>
+      <input type="number" id="peso" placeholder="Ex: 70" />
+    </div>
 
-                <div class="form-group">
-                <label>Idade:</label>
-                <input type="number" id="idade" placeholder="Ex: 25">
-                </div>
+    <div class="form-group">
+      <label>Altura (cm):</label>
+      <input type="number" id="altura" placeholder="Ex: 175" />
+    </div>
 
-                <div class="form-group">
-                <label>Sexo:</label>
-                <select id="sexo">
-                    <option value="masculino">Masculino</option>
-                    <option value="feminino">Feminino</option>
-                </select>
-                </div>
+    <div class="form-group">
+      <label>Idade:</label>
+      <input type="number" id="idade" placeholder="Ex: 25" />
+    </div>
 
-                <div class="form-group">
-                <label>Nível de Atividade:</label>
-                <select id="atividade">
-                    <option value="1.2">Nenhum exercício</option>
-                    <option value="1.375">Pouco exercício</option>
-                    <option value="1.725">Muito exercício</option>
-                </select>
-                </div>
+    <div class="form-group">
+      <label>Sexo:</label>
+      <select id="sexo">
+        <option value="masculino">Masculino</option>
+        <option value="feminino">Feminino</option>
+      </select>
+    </div>
 
-                <button onclick="calcular()">Calcular</button>
+    <div class="form-group">
+      <label>Nível de Atividade:</label>
+      <select id="atividade">
+        <option value="1.2">Nenhum exercício</option>
+        <option value="1.375">Pouco exercício (1-2x por semana)</option>
+        <option value="1.55">Exercício moderado (3-4x por semana)</option>
+        <option value="1.725">Muito exercício (5-6x por semana)</option>
+      </select>
+    </div>
 
-                <div id="resultado"></div>
-            </div>
-        </section>
-    </main>
-</body>
+    <div class="form-group">
+      <label>Objetivo:</label>
+      <select id="objetivo">
+        <option value="manter">Manter peso</option>
+        <option value="ganhar">Ganhar peso</option>
+        <option value="perder">Perder peso</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Peso que deseja atingir (kg):</label>
+      <input type="number" id="pesoMeta" placeholder="Ex: 70" />
+    </div>
+
+    <div class="form-group">
+      <label>Quantos kg por semana quer ganhar/perder?</label>
+      <select id="metaSemana">
+        <option value="0">0 kg por semana (manter peso)</option>
+        <option value="0.25">250g por semana</option>
+        <option value="0.5">500g por semana (recomendado)</option>
+        <option value="0.75">750g por semana</option>
+        <option value="1">1kg por semana</option>
+      </select>
+    </div>
+
+    <button onclick="calcular()">Calcular</button>
+
+    <div id="resultado"></div>
+  </div>
+</section>
+
 <script>
-    function calcular() {
-    const peso = parseFloat(document.getElementById("peso").value);
+  function calcular() {
+    const pesoAtual = parseFloat(document.getElementById("peso").value);
     const altura = parseFloat(document.getElementById("altura").value);
     const idade = parseInt(document.getElementById("idade").value);
     const sexo = document.getElementById("sexo").value;
     const atividade = parseFloat(document.getElementById("atividade").value);
+    const objetivo = document.getElementById("objetivo").value;
+    const pesoMeta = parseFloat(document.getElementById("pesoMeta").value);
+    const metaSemana = parseFloat(document.getElementById("metaSemana").value);
+    const resultadoDiv = document.getElementById("resultado");
 
-    if (isNaN(peso) || isNaN(altura) || isNaN(idade)) {
-        document.getElementById("resultado").innerText = "Preencha todos os campos corretamente.";
-        return;
+    // Validação básica dos campos
+    if (
+      isNaN(pesoAtual) ||
+      isNaN(altura) ||
+      isNaN(idade) ||
+      isNaN(pesoMeta) ||
+      isNaN(metaSemana)
+    ) {
+      resultadoDiv.innerText = "Preencha todos os campos corretamente.";
+      return;
     }
 
-    let tmb;
+    // Validação lógica: manter peso com meta diferente de 0
+    if (objetivo === "manter" && metaSemana !== 0) {
+      resultadoDiv.innerHTML = `<strong>Aviso:</strong> Você escolheu "Manter peso", mas a meta semanal é diferente de 0. 
+      Isso não faz sentido, pois para manter o peso o ganho ou perda semanal deve ser zero. Por favor, ajuste a meta semanal para 0kg ou escolha outro objetivo.`;
+      return;
+    }
 
-    if (sexo === "masculino") {
-        tmb = 10 * peso + 6.25 * altura - 5 * idade + 5;
+    // NOVA VALIDAÇÃO: manter peso, mas peso meta diferente do peso atual
+    if (objetivo === "manter" && pesoMeta !== pesoAtual) {
+      resultadoDiv.innerHTML = `<strong>Aviso:</strong> Você escolheu "Manter peso", mas o peso desejado (${pesoMeta}kg) é diferente do peso atual (${pesoAtual}kg). 
+      Isso não faz sentido, pois para manter o peso, o peso atual e o peso desejado devem ser iguais. Por favor, ajuste o peso desejado para o peso atual ou escolha outro objetivo.`;
+      return;
+    }
+
+    // Validação lógica: ganhar/perder peso com meta 0
+    if ((objetivo === "ganhar" || objetivo === "perder") && metaSemana === 0) {
+      resultadoDiv.innerHTML = `<strong>Aviso:</strong> Você escolheu "${objetivo === "ganhar" ? "Ganhar" : "Perder"} peso", mas a meta semanal é 0kg. 
+      Isso não faz sentido, pois para ${objetivo === "ganhar" ? "ganhar" : "perder"} peso a meta semanal deve ser maior que 0. Por favor, ajuste a meta semanal.`;
+      return;
+    }
+
+    // Validação meta semanal entre 0 e 1 (para ganhar/perder)
+    if (metaSemana < 0 || metaSemana > 1) {
+      resultadoDiv.innerHTML = "<strong>Aviso:</strong><br>O valor da meta semanal deve estar entre 0 e 1 kg.";
+      return;
+    }
+
+    if (metaSemana > 0.5 && metaSemana !== 0) {
+      const confirmacao = confirm(
+        "Perder ou ganhar mais de 500g por semana pode ser prejudicial. Pode causar perda de massa magra (emagrecimento) ou ganho de gordura (bulking). Deseja continuar?"
+      );
+      if (!confirmacao) {
+        resultadoDiv.innerText = "Cálculo cancelado pelo usuário.";
+        return;
+      }
+    }
+
+    // Diferença peso real esperado
+    const diferencaPeso = pesoMeta - pesoAtual;
+
+    // Se o objetivo for manter peso, ajustar meta semanal para 0, semanas necessárias = 0
+    let semanasNecessarias = 0;
+    if (objetivo === "manter") {
+      semanasNecessarias = 0;
     } else {
-        tmb = 10 * peso + 6.25 * altura - 5 * idade - 161;
+      semanasNecessarias = Math.abs(diferencaPeso) / metaSemana;
+      if (semanasNecessarias < 1) {
+        resultadoDiv.innerText = "Seu objetivo é muito pequeno para o ritmo escolhido. Tente ajustar os valores.";
+        return;
+      }
+    }
+
+    // TMB
+    let tmb;
+    if (sexo === "masculino") {
+      tmb = 10 * pesoAtual + 6.25 * altura - 5 * idade + 5;
+    } else {
+      tmb = 10 * pesoAtual + 6.25 * altura - 5 * idade - 161;
     }
 
     const tdee = tmb * atividade;
 
-    document.getElementById("resultado").innerText =
-        `Seu gasto calórico diário estimado é de ${Math.round(tdee)} calorias.`;
+    // Calorias por dia ajustadas
+    const caloriasPorSemana = 7700 * metaSemana * (diferencaPeso > 0 ? 1 : -1);
+    const caloriasPorDiaAjustadas = tdee + caloriasPorSemana / 7;
+
+    // Macronutrientes baseado no peso alvo
+    const proteinas = pesoMeta * 2;
+    const gorduras = pesoMeta * 1;
+
+    const caloriasProteinas = proteinas * 4;
+    const caloriasGorduras = gorduras * 9;
+
+    const caloriasCarbo = caloriasPorDiaAjustadas - caloriasProteinas - caloriasGorduras;
+    const carboidratos = caloriasCarbo > 0 ? caloriasCarbo / 4 : 0;
+
+    // Monta a resposta
+    let resposta = `
+      <strong>Seu gasto calórico diário estimado (TDEE):</strong> ${Math.round(tdee)} kcal<br><br>
+      <strong>Para atingir seu objetivo de ${pesoMeta}kg,</strong> você deve consumir em média:<br>
+      <strong>${Math.round(caloriasPorDiaAjustadas)} calorias diárias</strong><br><br>
+      <strong>Macronutrientes sugeridos por dia:</strong><br>
+      - Proteínas: ${Math.round(proteinas)}g<br>
+      - Carboidratos: ${Math.round(carboidratos)}g<br>
+      - Gorduras: ${Math.round(gorduras)}g<br><br>
+    `;
+
+    if (objetivo === "manter") {
+      resposta += `<strong>Como seu objetivo é manter o peso, não há previsão de ganho ou perda de peso.</strong>`;
+    } else {
+      resposta += `<strong>Isso deve levar aproximadamente ${semanasNecessarias.toFixed(1)} semanas.</strong>`;
     }
+
+    resultadoDiv.innerHTML = resposta;
+  }
 </script>
+    </main>
 </html>
