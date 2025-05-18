@@ -1,58 +1,89 @@
-*{
-    padding: 0px;
-    margin: 0px;
-    font-family: Arial, Helvetica, sans-serif;
+/* Reset e base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
 
-body{
-    background-color: gray;
+body {
+  background: linear-gradient(to right, #555, #888);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-section{
-    background-color: white;
-    width: 300px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 10px;
+/* Cabeçalho */
+header {
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 0.95rem;
 }
 
-button{
-    display: block;
-    margin: auto;
-    border: 3px solid black;
-    width: 50%;
-    background-color: white;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.2s;
+/* Área principal */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
-button:hover{
-    background-color: black;
-    color: white;
-    transition: all 0.2s;
+/* Caixa central */
+section {
+  background-color: #fff;
+  width: 90%;
+  max-width: 350px;
+  padding: 25px 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
 }
 
-h1{
-    background-color: black;
-    color: white;
-    padding: -20px;
-    border-radius: 10px 10px 0px 0px;
-    padding: 5px;
-    text-align: center;
-    margin-bottom: 10px;
+/* Título */
+h1 {
+  background-color: #000;
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  margin-bottom: 25px;
 }
 
-header{
-    background-color: rgb(0, 0, 0);
-    color: rgb(255, 255, 255);
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    padding: 3px;
+/* Botões */
+a {
+  text-decoration: none;
 }
 
-a{
-    text-decoration: none;
+button {
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  margin: 10px auto;
+  padding: 12px;
+  font-size: 1rem;
+  background-color: #fff;
+  border: 2px solid #000;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+/* Responsividade extra (para telas muito pequenas) */
+@media (max-width: 400px) {
+  h1 {
+    font-size: 1.3rem;
+  }
+
+  button {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
 }
