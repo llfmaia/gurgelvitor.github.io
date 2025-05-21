@@ -3,23 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TREINO</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Painel de Bem-Estar</title>
+    <link rel="stylesheet" href="assets/dashboard.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <p>Site criado e idealizado por Vitor Gurgel</p>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <div class="header-start">
+                 <h1 id="greeting"></h1>
+            </div>
+            <div class="header-end">
+                <button id="theme-toggle" class="theme-switcher">
+                    <i class="material-icons">dark_mode</i>
+                </button>
+            </div>
     </header>
-    <main>
-        <section>
-            <h1>TREINO</h1>
-            <a href="pasttreinos/peito/peito.html" ><button>PEITO</button></a> <br>
-            <a href="pasttreinos/costas/costas.html"><button>COSTAS</button></a> <br> 
-            <a href="pasttreinos/ombro/obro.html"><button>OMBRO</button></a> <br>
-            <a href="pasttreinos/pernas/perna.html"><button>PERNAS</button></a> <br>
-            <a href="mapacorpo.html"><button>MAPA DO CORPO</button></a> <br>
-            <a href="tabelanutricional.html"><button>TABELA NUTRICIONAL</button></a> <br>
+
+        <main class="dashboard-main">
+            <section class="welcome-card card">
+                <h2 id="motivational-quote"><em>Carregando frase motivacional...</em></h2>
+            </section>
+
+            <section class="fitness-overview card">
+                <h2>Resumo Fitness</h2>
+                <a href="mapacorpo.html" class="cta-button">Mapa do Corpo</a>
+                <a href="tabelanutricional.html" class="cta-button">Tabela Nutricional</a>
+            </section>
+
+            <section class="quick-actions card">
+                <h2>Ações Rápidas</h2>
+                <a href="pasttreinos/peito/peito.html"><button class="action-button">Peito</button></a>
+                <a href="pasttreinos/costas/costas.html"><button class="action-button">Costas</button></a>
+                <a href="pasttreinos/ombro/ombro.html"><button class="action-button">Ombro</button></a>
+                <a href="pasttreinos/pernas/perna.html"><button class="action-button">Pernas</button></a>
         </section>
+
     </main>
+
+        <footer class="dashboard-footer">
+            <p>Site criado e idealizado por Vitor Gurgel</p>
+        </footer>
+    </div>
+    <script src="assets/dashboard.js"></script>
 </body>
 </html>
