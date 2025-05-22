@@ -1,0 +1,627 @@
+/* dashboard.css */
+:root {
+    --bg-color: #f4f6f8;
+    --card-bg-color: #ffffff;
+    --text-color: #333333;
+    --header-bg-start: #7b4397; /* Updated primary gradient */
+    --header-bg-end: #dc2430;   /* Updated primary gradient */
+    --primary-color: #7b4397;
+    --secondary-color: #dc2430;
+    --accent-color: #7b4397;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --soft-shadow-color: rgba(0, 0, 0, 0.08);
+    --border-color: #eee;
+    --icon-color: var(--primary-color);
+    --button-text-color: #ffffff;
+    --footer-text-color: #777777;
+    --link-color: var(--primary-color);
+    --header-text-color: #ffffff;
+    --quote-color: #555555;
+    --stat-label-color: #777777;
+    --stat-value-color: var(--text-color);
+    --input-bg-color: #ffffff;
+    --input-border-color: #cccccc;
+    --input-text-color: #333333;
+    --input-focus-border-color: var(--primary-color);
+    --label-color: var(--text-color);
+    --button-secondary-bg-color: var(--secondary-color);
+    --theme-switcher-bg-color: rgba(255, 255, 255, 0.2);
+    --theme-switcher-hover-bg-color: rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="dark"] {
+    --bg-color: #1a1a2e;
+    --card-bg-color: #16213e;
+    --text-color: #e0e0e0;
+    --header-bg-start: #4a0072; /* Darker gradient for dark mode */
+    --header-bg-end: #a30000;   /* Darker gradient for dark mode */
+    --primary-color: #9d65c9;
+    --secondary-color: #ff5860;
+    --accent-color: #9d65c9;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --soft-shadow-color: rgba(0, 0, 0, 0.3);
+    --border-color: #333;
+    --icon-color: var(--primary-color);
+    --button-text-color: #ffffff;
+    --footer-text-color: #aaaaaa;
+    --link-color: var(--primary-color);
+    --header-text-color: #ffffff;
+    --quote-color: #bbbbbb;
+    --stat-label-color: #aaaaaa;
+    --stat-value-color: var(--text-color);
+    --input-bg-color: #2c2c44; /* Darker input background */
+    --input-border-color: #444466; /* Darker input border */
+    --input-text-color: #e0e0e0;
+    --input-focus-border-color: var(--primary-color);
+    --label-color: var(--text-color);
+    --theme-switcher-bg-color: rgba(0, 0, 0, 0.2);
+    --theme-switcher-hover-bg-color: rgba(0, 0, 0, 0.3);
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Changed to flex-start for scrollable content */
+    min-height: 100vh;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth theme transition */
+    padding-top: 20px; /* Add some padding at the top */
+    padding-bottom: 20px; /* Add some padding at the bottom */
+}
+
+.dashboard-container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 20px auto; /* Ensure it's centered even with body padding */
+    background-color: var(--card-bg-color);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px var(--shadow-color);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: fadeInScaleUp 0.8s ease-out;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-header {
+    background: linear-gradient(135deg, var(--header-bg-start) 0%, var(--header-bg-end) 100%);
+    color: var(--header-text-color);
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dashboard-header .header-start {
+    display: flex;
+    align-items: center;
+    flex-grow: 1; /* Allows title to take space */
+}
+
+.dashboard-header .header-end {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Pushes to the right */
+}
+
+.dashboard-header h1 {
+    margin: 0 15px 0 0; /* Adjusted margin for title in header */
+    font-size: 1.8em; /* Slightly reduced for subpages if too large */
+    font-weight: 500;
+    animation: slideInFromLeft 0.7s ease-out;
+    line-height: 1.2; /* Ensure it aligns well with buttons/icons */
+}
+
+/* Specific H1 for main dashboard greeting */
+.dashboard-header h1#greeting {
+    font-size: 2em;
+    margin-right: auto; /* Push weather and theme toggle to the right */
+}
+
+.dashboard-header .cta-button,
+.dashboard-header .theme-switcher {
+    margin-left: 15px; /* Space between items in header-end or before title */
+}
+
+.theme-switcher {
+    background-color: var(--theme-switcher-bg-color);
+    border: none;
+    color: var(--header-text-color);
+    padding: 10px; /* Increased padding for a better touch target */
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    height: 40px; /* Explicit height */
+    width: 40px;  /* Explicit width */
+}
+.theme-switcher:hover {
+    background-color: var(--theme-switcher-hover-bg-color);
+}
+.theme-switcher .material-icons {
+    font-size: 20px;
+}
+
+.weather-widget {
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+    animation: slideInFromRight 0.7s ease-out;
+}
+
+.weather-widget .material-icons {
+    margin-right: 10px;
+    font-size: 2em; /* Larger icon */
+    color: var(--header-text-color); /* Ensure icon matches header text color */
+}
+
+.weather-widget span {
+    margin-right: 15px;
+}
+
+.dashboard-main {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 30px; /* Increased gap */
+    background-color: var(--bg-color); /* Main content area bg */
+}
+
+.card {
+    background-color: var(--card-bg-color);
+    border-radius: 12px; /* Softer corners */
+    padding: 25px;
+    box-shadow: 0 4px 12px var(--soft-shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    animation: popIn 0.5s ease-out backwards; /* Animation for cards */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Staggering card animations */
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+
+.welcome-card h2 {
+    font-size: 1.6em;
+    color: var(--primary-color); /* Theme color */
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.welcome-card em {
+    font-style: italic;
+    color: var(--quote-color);
+    transition: color 0.3s ease;
+}
+
+.fitness-overview h2,
+.quick-actions h2,
+.page-title-card h1 { /* For subpage titles */
+    font-size: 1.4em;
+    color: var(--text-color);
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--accent-color); /* Theme accent line */
+    padding-bottom: 10px;
+    font-weight: 500;
+    transition: color 0.3s ease, border-bottom-color 0.3s ease;
+}
+
+.fitness-stats {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.stat {
+    opacity: 0; /* Start hidden for animation */
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Staggering stat animations */
+.stat:nth-child(1) { animation-delay: 0.4s; }
+.stat:nth-child(2) { animation-delay: 0.55s; }
+.stat:nth-child(3) { animation-delay: 0.7s; }
+
+.stat .material-icons {
+    font-size: 2.8em; /* Larger icons */
+    color: var(--icon-color); /* Theme color */
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+}
+
+.stat span {
+    display: block;
+    font-size: 0.9em;
+    color: var(--stat-label-color);
+    margin-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+.stat p {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--stat-value-color);
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.cta-button,
+.action-button {
+    display: inline-block; /* Changed to inline-block */
+    background-color: var(--primary-color); /* Theme color */
+    color: var(--button-text-color);
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px; /* Pill shape */
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, color 0.3s ease;
+    margin-right: 10px; /* Add some spacing between buttons */
+    margin-bottom: 10px; /* Add margin for wrapping */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.cta-button:hover,
+.action-button:hover {
+    background-color: var(--secondary-color); /* Darker shade on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15); /* This shadow could also be a variable if needed */
+}
+.action-button {
+    width: calc(50% - 10px); /* Adjust width for two buttons per row, considering margin */
+    margin-bottom: 15px; /* Spacing between rows of buttons */
+    text-align: center;
+}
+.quick-actions a { /* To make buttons display side by side */
+    text-decoration: none;
+}
+
+/* Styles for generic content card on subpages */
+.content-card {
+    background-color: var(--card-bg-color);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px var(--soft-shadow-color);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    /* Add specific styles for p, ul, table etc. inside content-card if needed */
+}
+
+.content-card p, .content-card li {
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: color 0.3s ease;
+}
+
+.content-card a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.content-card a:hover {
+    text-decoration: underline;
+}
+
+.content-card table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.content-card th, .content-card td {
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    text-align: left;
+    transition: border-color 0.3s ease, color 0.3s ease;
+}
+.content-card th {
+    background-color: var(--bg-color); /* Slightly different for header */
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+/* Specific styles for tabelanutricional.html */
+.tabela-nutricional-container table { /* Keep existing styles if they are complex and just adapt colors */
+    /* Example of overriding specific styles if needed */
+}
+
+/* Specific styles for mapacorpo.html */
+.mapa-corpo-container svg { /* Ensure SVG fill/stroke colors are themable */
+    /* Example */
+    /* fill: var(--text-color); */
+}
+
+.dashboard-footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9em;
+    color: var(--footer-text-color);
+    border-top: 1px solid var(--border-color);
+    transition: color 0.3s ease, border-top-color 0.3s ease;
+    background-color: var(--card-bg-color); /* Footer to match card bg */
+}
+
+/* Animations */
+@keyframes fadeInScaleUp {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 20px; /* Adjust padding */
+    }
+
+    .theme-switcher {
+        top: 10px;
+        right: 10px;
+    }
+
+    .dashboard-header h1 {
+        font-size: 1.8em;
+        margin-bottom: 10px;
+    }
+
+    .weather-widget {
+        font-size: 0.9em;
+        align-self: flex-start; /* Align to start on smaller screens */
+    }
+    .weather-widget .material-icons {
+        font-size: 1.8em;
+    }
+
+    .dashboard-main {
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .fitness-stats {
+        flex-direction: column; /* Stack stats vertically */
+        gap: 20px; /* Add gap between stacked stats */
+    }
+
+    .stat .material-icons {
+        font-size: 2.5em;
+    }
+    .stat p {
+        font-size: 1.6em;
+    }
+
+    .action-button {
+        width: 100%; /* Full width buttons on small screens */
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-header h1 {
+        font-size: 1.6em;
+    }
+    .weather-widget span {
+        display: block; /* Stack weather info */
+        margin-bottom: 5px;
+    }
+    .welcome-card h2 {
+        font-size: 1.4em;
+    }
+    .fitness-overview h2, .quick-actions h2 {
+        font-size: 1.2em;
+    }
+}
+
+/* Ensure Roboto font is loaded if not already via HTML */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+/* Calculator Styles - to be placed in dashboard.css */
+.calculator-card .form-group {
+    margin-bottom: 20px;
+}
+
+.calculator-card label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--label-color);
+    font-size: 0.95em;
+}
+
+.calculator-card input[type="number"],
+.calculator-card select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 8px;
+    background-color: var(--input-bg-color);
+    color: var(--input-text-color);
+    font-size: 1em;
+    box-sizing: border-box; /* Important for width: 100% and padding */
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.calculator-card input[type="number"]:focus,
+.calculator-card select:focus {
+    outline: none;
+    border-color: var(--input-focus-border-color);
+    box-shadow: 0 0 0 2px rgba(var(--input-focus-border-color), 0.2);
+}
+
+.calculator-card .cta-button {
+    /* Using existing .cta-button styles, can add specifics if needed */
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1em;
+    margin-top: 10px; /* Add some space above the button */
+}
+
+#resultado {
+    margin-top: 25px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: var(--bg-color); /* Use a slightly different bg for emphasis */
+    color: var(--text-color);
+    line-height: 1.7;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#resultado h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+#resultado h4 {
+    color: var(--primary-color);
+    font-size: 1.1em;
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+
+#resultado ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#resultado li {
+    margin-bottom: 8px;
+}
+
+#resultado strong {
+    color: var(--accent-color);
+}
+
+#resultado em {
+    font-size: 0.9em;
+    color: var(--quote-color);
+    display: block;
+    margin-top: 15px;
+}
+
+/* Style for error messages in calculator */
+#resultado.error {
+    background-color: var(--secondary-color) !important; /* Ensure overrides */
+    color: var(--button-text-color) !important;
+}
+
+#resultado.error strong {
+    color: var(--button-text-color);
+}
+
+/* Training Card Styles */
+.training-card h2 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+.training-card ol {
+    list-style-position: inside;
+    padding-left: 0;
+}
+.training-card li {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: var(--bg-color);
+    border-radius: 6px;
+    border-left: 3px solid var(--accent-color);
+    transition: background-color 0.3s ease, border-left-color 0.3s ease;
+}
+.training-card li div {
+    font-size: 0.9em;
+    color: var(--quote-color);
+    margin-top: 5px;
+    padding-left: 10px;
+    transition: color 0.3s ease;
+}
+.training-card li i {
+    color: var(--secondary-color);
+    transition: color 0.3s ease;
+}
+.training-card > p { /* Simplified selector for direct children paragraphs */
+    margin-bottom: 15px;
+    font-weight: 500;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+.training-card a {
+    color: var(--link-color);
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.training-card a:hover {
+    text-decoration: underline;
+} 
