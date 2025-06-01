@@ -108,65 +108,65 @@
                 </table>
             </div>
         </section>
-
             <section class="card content-card calculator-card" id="calculadora">
               <h2>Calculadora de Calorias</h2>
-    <div class="form-group">
-                <label for="peso">Peso atual (kg):</label>
-      <input type="number" id="peso" placeholder="Ex: 70" />
-    </div>
+              <div class="form-group">
+                          <label for="peso">Peso atual (kg):</label>
+                <input type="number" id="peso" placeholder="Ex: 70" />
+              </div>
 
-    <div class="form-group">
-                <label for="altura">Altura (cm):</label>
-      <input type="number" id="altura" placeholder="Ex: 175" />
-    </div>
+              <div class="form-group">
+                          <label for="altura">Altura (cm):</label>
+                <input type="number" id="altura" placeholder="Ex: 175" />
+              </div>
 
-    <div class="form-group">
-                <label for="idade">Idade:</label>
-      <input type="number" id="idade" placeholder="Ex: 25" />
-    </div>
+              <div class="form-group">
+                          <label for="idade">Idade:</label>
+                <input type="number" id="idade" placeholder="Ex: 25" />
+              </div>
 
-    <div class="form-group">
-                <label for="sexo">Sexo:</label>
-      <select id="sexo">
-        <option value="masculino">Masculino</option>
-        <option value="feminino">Feminino</option>
-      </select>
-    </div>
+              <div class="form-group">
+                          <label for="sexo">Sexo:</label>
+                <select id="sexo">
+                  <option value="masculino">Masculino</option>
+                  <option value="feminino">Feminino</option>
+                </select>
+              </div>
 
-    <div class="form-group">
-                <label for="atividade">Nível de Atividade:</label>
-      <select id="atividade">
-        <option value="1.2">Nenhum exercício</option>
-        <option value="1.375">Pouco exercício (1-2x por semana)</option>
-        <option value="1.55">Exercício moderado (3-4x por semana)</option>
-        <option value="1.725">Muito exercício (5-6x por semana)</option>
-      </select>
-    </div>
+              <div class="form-group">
+                          <label for="atividade">Nível de Atividade:</label>
+                <select id="atividade">
+                  <option value="1.2">Nenhum exercício</option>
+                  <option value="1.375">Pouco exercício (1-2x por semana)</option>
+                  <option value="1.55">Exercício moderado (3-4x por semana)</option>
+                  <option value="1.725">Muito exercício (5-6x por semana)</option>
+                </select>
+              </div>
 
-    <div class="form-group">
-                <label for="objetivo">Objetivo:</label>
-      <select id="objetivo">
-        <option value="manter">Manter peso</option>
-        <option value="ganhar">Ganhar peso</option>
-        <option value="perder">Perder peso</option>
-      </select>
-    </div>
+              <div class="form-group">
+                          <label for="objetivo">Objetivo:</label>
+                <select id="objetivo">
+                  <option value="manter">Manter peso</option>
+                  <option value="ganhar">Ganhar peso</option>
+                  <option value="perder">Perder peso</option>
+                </select>
+              </div>
 
-    <div class="form-group">
-                <label for="pesoMeta">Peso que deseja atingir (kg):</label>
-      <input type="number" id="pesoMeta" placeholder="Ex: 70" />
-    </div>
+              <div class="form-group">
+                          <label for="pesoMeta">Peso que deseja atingir (kg):</label>
+                <input type="number" id="pesoMeta" placeholder="Ex: 70" />
+              </div>
 
-    <div class="form-group">
-                <label for="metaSemana">Quantos kg por semana quer ganhar/perder?</label>
-      <select id="metaSemana">
-        <option value="0">0 kg por semana (manter peso)</option>
-        <option value="0.25">250g por semana</option>
-        <option value="0.5">500g por semana (recomendado)</option>
-        <option value="0.75">750g por semana</option>
-        <option value="1">1kg por semana</option>
-      </select>
+              <div class="form-group">
+                          <label for="metaSemana">Quantos kg por semana quer ganhar/perder?</label>
+                <select id="metaSemana">
+                  <option value="0">0 kg por semana (manter peso)</option>
+                  <option value="0.25">250g por semana</option>
+                  <option value="0.5">500g por semana (recomendado)</option>
+                  <option value="0.75">750g por semana</option>
+                  <option value="1">1kg por semana</option>
+                </select>
+            <section>
     </div>
               <button onclick="calcular()" class="cta-button" style="margin-top:15px;">Calcular</button>
 
@@ -192,115 +192,138 @@
     const metaSemana = parseFloat(document.getElementById("metaSemana").value);
     const resultadoDiv = document.getElementById("resultado");
 
-        // Reset previous results and styles
-        resultadoDiv.innerHTML = '';
-        resultadoDiv.classList.remove('error');
+    // Resetar resultados anteriores
+    resultadoDiv.innerHTML = '';
+    resultadoDiv.classList.remove('error');
 
     // Validação básica dos campos
     if (
-      isNaN(pesoAtual) ||
-      isNaN(altura) ||
-      isNaN(idade) ||
-      isNaN(pesoMeta) ||
-      isNaN(metaSemana)
+        isNaN(pesoAtual) ||
+        isNaN(altura) ||
+        isNaN(idade) ||
+        isNaN(pesoMeta) ||
+        isNaN(metaSemana)
     ) {
-          resultadoDiv.innerHTML = "<strong>Erro:</strong> Preencha todos os campos corretamente.";
-          resultadoDiv.classList.add('error');
-      return;
+        resultadoDiv.innerHTML = "<strong>Erro:</strong> Preencha todos os campos corretamente.";
+        resultadoDiv.classList.add('error');
+        return;
     }
 
+    // Validações específicas por objetivo
     if (objetivo === "manter" && metaSemana !== 0) {
-          resultadoDiv.innerHTML = `<strong>Aviso:</strong> Você escolheu "Manter peso", mas a meta semanal é diferente de 0. Para manter o peso, a meta semanal deve ser zero.`;
-          resultadoDiv.classList.add('error');
-      return;
+        resultadoDiv.innerHTML = `<strong>Aviso:</strong> Você escolheu "Manter peso", mas a meta semanal é diferente de 0. Para manter o peso, a meta semanal deve ser zero.`;
+        resultadoDiv.classList.add('error');
+        return;
     }
 
     if (objetivo === "manter" && pesoMeta !== pesoAtual) {
-          resultadoDiv.innerHTML = `<strong>Aviso:</strong> Você escolheu "Manter peso", mas o peso desejado (${pesoMeta}kg) é diferente do peso atual (${pesoAtual}kg). Para manter o peso, o peso atual e o peso desejado devem ser iguais.`;
-          resultadoDiv.classList.add('error');
-      return;
+        resultadoDiv.innerHTML = `<strong>Aviso:</strong> Você escolheu "Manter peso", mas o peso desejado (${pesoMeta}kg) é diferente do peso atual (${pesoAtual}kg). Para manter o peso, os dois devem ser iguais.`;
+        resultadoDiv.classList.add('error');
+        return;
     }
 
     if ((objetivo === "ganhar" || objetivo === "perder") && metaSemana === 0) {
-          resultadoDiv.innerHTML = `<strong>Aviso:</strong> Você escolheu "${objetivo === "ganhar" ? "Ganhar" : "Perder"} peso", mas a meta semanal é 0kg. Para ${objetivo === "ganhar" ? "ganhar" : "perder"} peso, a meta semanal deve ser maior que 0.`;
-          resultadoDiv.classList.add('error');
-      return;
+        resultadoDiv.innerHTML = `<strong>Aviso:</strong> Você escolheu "${objetivo === "ganhar" ? "Ganhar" : "Perder"} peso", mas a meta semanal é 0kg. Para ${objetivo === "ganhar" ? "ganhar" : "perder"} peso, a meta semanal deve ser maior que 0.`;
+        resultadoDiv.classList.add('error');
+        return;
     }
 
+    // ✅ Validação de coerência entre objetivo e pesoMeta
+    if (objetivo === "perder" && pesoMeta >= pesoAtual) {
+        resultadoDiv.innerHTML = `<strong>Erro:</strong> Você escolheu "Perder peso", mas o peso desejado (${pesoMeta}kg) é maior ou igual ao peso atual (${pesoAtual}kg). Isso não faz sentido para quem deseja emagrecer.`;
+        resultadoDiv.classList.add('error');
+        return;
+    }
+
+    if (objetivo === "ganhar" && pesoMeta <= pesoAtual) {
+        resultadoDiv.innerHTML = `<strong>Erro:</strong> Você escolheu "Ganhar peso", mas o peso desejado (${pesoMeta}kg) é menor ou igual ao peso atual (${pesoAtual}kg). Isso não faz sentido para quem deseja engordar.`;
+        resultadoDiv.classList.add('error');
+        return;
+    }
+
+    // Verificação da meta semanal
     if (metaSemana < 0 || metaSemana > 1) {
-          resultadoDiv.innerHTML = "<strong>Aviso:</strong> O valor da meta semanal deve estar entre 0 e 1 kg.";
-          resultadoDiv.classList.add('error');
-      return;
+        resultadoDiv.innerHTML = "<strong>Aviso:</strong> O valor da meta semanal deve estar entre 0 e 1 kg.";
+        resultadoDiv.classList.add('error');
+        return;
     }
 
     if (metaSemana > 0.5 && metaSemana !== 0) {
-      const confirmacao = confirm(
+        const confirmacao = confirm(
             "Perder ou ganhar mais de 500g por semana pode ser prejudicial, podendo causar perda de massa magra (emagrecimento) ou ganho excessivo de gordura (bulking). Deseja continuar?"
-      );
-      if (!confirmacao) {
-        resultadoDiv.innerText = "Cálculo cancelado pelo usuário.";
-        return;
-      }
+        );
+        if (!confirmacao) {
+            resultadoDiv.innerText = "Cálculo cancelado pelo usuário.";
+            return;
+        }
     }
 
+    // Cálculo de tempo necessário
     const diferencaPeso = pesoMeta - pesoAtual;
     let semanasNecessarias = 0;
+
     if (objetivo === "manter") {
-      semanasNecessarias = 0;
+        semanasNecessarias = 0;
     } else {
-          if (metaSemana === 0 && diferencaPeso !== 0) { // Prevent division by zero if goal is to gain/lose but rate is 0
+        if (metaSemana === 0 && diferencaPeso !== 0) {
             resultadoDiv.innerHTML = `<strong>Aviso:</strong> Para ${objetivo === "ganhar" ? "ganhar" : "perder"} peso, a meta semanal não pode ser 0kg.`;
             resultadoDiv.classList.add('error');
             return;
-          }
-      semanasNecessarias = Math.abs(diferencaPeso) / metaSemana;
-          if (semanasNecessarias < 1 && diferencaPeso !== 0) {
+        }
+
+        semanasNecessarias = Math.abs(diferencaPeso) / metaSemana;
+
+        if (semanasNecessarias < 1 && diferencaPeso !== 0) {
             resultadoDiv.innerText = "Seu objetivo é muito pequeno para o ritmo escolhido, ou o ritmo é muito alto para a diferença de peso. Tente ajustar os valores.";
             resultadoDiv.classList.add('error');
-        return;
-      }
+            return;
+        }
     }
 
+    // Cálculo TMB
     let tmb;
     if (sexo === "masculino") {
-      tmb = 10 * pesoAtual + 6.25 * altura - 5 * idade + 5;
+        tmb = 10 * pesoAtual + 6.25 * altura - 5 * idade + 5;
     } else {
-      tmb = 10 * pesoAtual + 6.25 * altura - 5 * idade - 161;
+        tmb = 10 * pesoAtual + 6.25 * altura - 5 * idade - 161;
     }
 
-        const gastoEnergeticoTotal = tmb * atividade;
-        let caloriasNecessarias = gastoEnergeticoTotal;
+    const gastoEnergeticoTotal = tmb * atividade;
+    let caloriasNecessarias = gastoEnergeticoTotal;
 
-        if (objetivo === "ganhar") {
-          caloriasNecessarias += metaSemana * 1100; // Aproximadamente 7700 kcal por kg, dividido por 7 dias
-        } else if (objetivo === "perder") {
-          caloriasNecessarias -= metaSemana * 1100;
-        }
+    // Calorias com base no objetivo
+    if (objetivo === "ganhar") {
+        caloriasNecessarias += metaSemana * 1100;
+    } else if (objetivo === "perder") {
+        caloriasNecessarias -= metaSemana * 1100;
+    }
 
-        // Proteínas, Carboidratos e Gorduras (Exemplo: 40% Carb, 30% Prot, 30% Gordura)
-        const proteinasG = (caloriasNecessarias * 0.30) / 4;
-        const carboidratosG = (caloriasNecessarias * 0.40) / 4;
-        const gordurasG = (caloriasNecessarias * 0.30) / 9;
+    // Macronutrientes (40% Carbo, 30% Prot, 30% Gord)
+    const proteinasG = (caloriasNecessarias * 0.30) / 4;
+    const carboidratosG = (caloriasNecessarias * 0.40) / 4;
+    const gordurasG = (caloriasNecessarias * 0.30) / 9;
 
-        let resultadoHTML = `
-          <h3>Resultados:</h3>
-          <p><strong>Taxa Metabólica Basal (TMB):</strong> ${tmb.toFixed(0)} kcal</p>
-          <p><strong>Gasto Energético Total (GET):</strong> ${gastoEnergeticoTotal.toFixed(0)} kcal</p>
-          <p><strong>Calorias para ${objetivo === 'manter' ? 'manter o peso' : objetivo === 'ganhar' ? 'ganhar peso' : 'perder peso'}:</strong> ${caloriasNecessarias.toFixed(0)} kcal/dia</p>
-          <h4>Sugestão de Macronutrientes:</h4>
-          <ul>
-            <li><strong>Proteínas:</strong> ${proteinasG.toFixed(0)}g/dia</li>
-            <li><strong>Carboidratos:</strong> ${carboidratosG.toFixed(0)}g/dia</li>
-            <li><strong>Gorduras:</strong> ${gordurasG.toFixed(0)}g/dia</li>
-          </ul>
+    // Resultado
+    let resultadoHTML = `
+      <h3>Resultados:</h3>
+      <p><strong>Taxa Metabólica Basal (TMB):</strong> ${tmb.toFixed(0)} kcal</p>
+      <p><strong>Gasto Energético Total (GET):</strong> ${gastoEnergeticoTotal.toFixed(0)} kcal</p>
+      <p><strong>Calorias para ${objetivo === 'manter' ? 'manter o peso' : objetivo === 'ganhar' ? 'ganhar peso' : 'perder peso'}:</strong> ${caloriasNecessarias.toFixed(0)} kcal/dia</p>
+      <h4>Sugestão de Macronutrientes:</h4>
+      <ul>
+        <li><strong>Proteínas:</strong> ${proteinasG.toFixed(0)}g/dia</li>
+        <li><strong>Carboidratos:</strong> ${carboidratosG.toFixed(0)}g/dia</li>
+        <li><strong>Gorduras:</strong> ${gordurasG.toFixed(0)}g/dia</li>
+      </ul>
     `;
 
-        if (objetivo !== "manter") {
-          resultadoHTML += `<p><strong>Tempo estimado para atingir o objetivo (${pesoMeta}kg):</strong> ${semanasNecessarias.toFixed(1)} semanas</p>`;
-        }
-        resultadoHTML += `<p><em>Lembre-se: Estes são valores aproximados. Consulte um nutricionista para um plano alimentar personalizado.</em></p>`;
-        resultadoDiv.innerHTML = resultadoHTML;
-  }
+    if (objetivo !== "manter") {
+        resultadoHTML += `<p><strong>Tempo estimado para atingir o objetivo (${pesoMeta}kg):</strong> ${semanasNecessarias.toFixed(1)} semanas</p>`;
+    }
+
+    resultadoHTML += `<p><em>Lembre-se: Estes são valores aproximados. Consulte um nutricionista para um plano alimentar personalizado.</em></p>`;
+    resultadoDiv.innerHTML = resultadoHTML;
+}
 </script>
 </body>
 </html>
