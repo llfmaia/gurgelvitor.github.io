@@ -6,7 +6,7 @@
     <title>Treinos - Painel de Bem-Estar</title>
     <link rel="stylesheet" href="assets/dashboard.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6H0W5V50NE"></script>
@@ -25,33 +25,20 @@
                 <h1>Treinos</h1>
             </div>
             <div class="header-end">
-                <div class="theme-controls">
-                    <div class="theme-selector">
-                        <button class="theme-picker active" data-theme="default" title="Purple Fusion"></button>
-                        <button class="theme-picker" data-theme="fire" title="Fire Intensity"></button>
-                        <button class="theme-picker" data-theme="ocean" title="Ocean Deep"></button>
-                        <button class="theme-picker" data-theme="forest" title="Forest Power"></button>
-                        <button class="theme-picker" data-theme="gold" title="Golden Elite"></button>
-                        <button class="theme-picker" data-theme="steel" title="Steel Force"></button>
-                    </div>
-                    <button id="palette-toggle" class="palette-toggle">
-                        <i class="material-icons">palette</i>
-                    </button>
-                    <button id="theme-toggle" class="mode-toggle">
-                        <i class="material-icons">dark_mode</i>
-                    </button>
-                </div>
+                <button id="theme-toggle" class="theme-switcher">
+                    <i class="material-icons">dark_mode</i>
+                </button>
             </div>
         </header>
 
         <main class="dashboard-main">
-            <section class="card page-title-card glass progressive-blur-1">
-                <h1 class="hero-text"><i class="material-icons" style="font-size: 1.2em; margin-right: 0.2em; vertical-align: middle;">fitness_center</i> Escolha seu Treino</h1>
-                <p class="motivational-text">Treinos de grandes atletas organizados por grupo muscular</p>
+            <section class="card page-title-card">
+                <h1>🏋️‍♂️ Escolha seu Treino</h1>
+                <p>Treinos de grandes atletas organizados por grupo muscular</p>
             </section>
 
-            <section class="card content-card quick-actions glass progressive-blur-2">
-                <h2 class="section-title">Treinos por Grupo</h2>
+            <section class="card content-card quick-actions">
+                <h2>Treinos por Grupo Muscular</h2>
                 <a href="pasttreinos/peito/peito.html">
                     <button class="action-button">
                         <i class="material-icons" style="margin-right: 8px;">fitness_center</i>
@@ -84,19 +71,20 @@
                 </a>
             </section>
 
-            <section class="card content-card glass progressive-blur-3">
-                <h2 class="section-title"><i class="material-icons">description</i> Sobre os Treinos</h2>
+            <section class="card content-card">
+                <h2>📋 Sobre os Treinos</h2>
                 <p>
-                    Treinos baseados em rotinas de grandes atletas do fisiculturismo mundial.
+                    Nossos treinos são baseados em rotinas de grandes atletas do fisiculturismo mundial. 
+                    Cada treino inclui exercícios específicos, séries, repetições e vídeos demonstrativos.
                 </p>
-                <h3 class="accent-text"><i class="material-icons" style="font-size: 1em; margin-right: 0.2em; vertical-align: middle;">stars</i> Atletas Disponíveis:</h3>
+                <h3>🌟 Atletas Disponíveis:</h3>
                 <ul>
-                    <li><strong>Jorlan</strong> - Volume e intensidade</li>
-                    <li><strong>Johann</strong> - Metodologia alemã</li>
-                    <li><strong>CBum</strong> - 5x Mr. Olympia Classic</li>
-                    <li><strong>Arnold</strong> - 7x Mr. Olympia</li>
-                    <li><strong>Dorian Yates</strong> - 6x Mr. Olympia HIT</li>
-                    <li><strong>Cruz</strong> - Treinos funcionais</li>
+                    <li><strong>Jorlan</strong> - Treinos focados em volume e intensidade</li>
+                    <li><strong>Johann</strong> - Metodologia alemã de precisão</li>
+                    <li><strong>CBum (Chris Bumstead)</strong> - 5x Mr. Olympia Classic Physique</li>
+                    <li><strong>Arnold Schwarzenegger</strong> - O lendário 7x Mr. Olympia</li>
+                    <li><strong>Dorian Yates</strong> - 6x Mr. Olympia, estilo HIT</li>
+                    <li><strong>Cruz</strong> - Treinos funcionais e de força</li>
                 </ul>
             </section>
         </main>

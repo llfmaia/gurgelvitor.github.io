@@ -38,164 +38,30 @@ document.addEventListener('DOMContentLoaded', () => {
         // Replace with actual API call as commented in previous versions
     }
 
-    // Advanced Theme System with Multiple Themes
+    // Theme Switcher Logic
     const themeToggleButton = document.getElementById('theme-toggle');
-    const paletteToggleButton = document.getElementById('palette-toggle');
-    const themeSelector = document.querySelector('.theme-selector');
-    const themePickers = document.querySelectorAll('.theme-picker');
-    
-    // Get current theme and mode from localStorage or defaults
-    const currentTheme = localStorage.getItem('fitness-theme') || 'default';
-    const currentMode = localStorage.getItem('fitness-mode') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    function applyTheme(theme, mode) {
+    function applyTheme(theme) {
         document.documentElement.setAttribute('data-theme', theme);
-        document.documentElement.setAttribute('data-mode', mode);
-        localStorage.setItem('fitness-theme', theme);
-        localStorage.setItem('fitness-mode', mode);
-        
-        // Update mode toggle icon
+        localStorage.setItem('theme', theme);
         if (themeToggleButton) {
-            themeToggleButton.innerHTML = mode === 'dark' ? '<i class="material-icons">light_mode</i>' : '<i class="material-icons">dark_mode</i>';
+            themeToggleButton.innerHTML = theme === 'dark' ? '<i class="material-icons">light_mode</i>' : '<i class="material-icons">dark_mode</i>';
         }
-        
-        // Update theme picker active state
-        themePickers.forEach(picker => {
-            picker.classList.remove('active');
-            if (picker.getAttribute('data-theme') === theme) {
-                picker.classList.add('active');
-            }
-        });
-        
-        // Add smooth transition effect
-        document.body.style.transition = 'all 0.3s ease';
-        setTimeout(() => {
-            document.body.style.transition = '';
-        }, 300);
     }
 
-    // Initialize theme
-    applyTheme(currentTheme, currentMode);
-
-    // Palette toggle functionality
-    if (paletteToggleButton && themeSelector) {
-        paletteToggleButton.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const isActive = themeSelector.classList.contains('active');
-            const themeControls = document.querySelector('.theme-controls');
-            
-            if (isActive) {
-                themeSelector.classList.remove('active');
-                paletteToggleButton.classList.remove('active');
-                themeControls.classList.remove('expanded');
-            } else {
-                themeSelector.classList.add('active');
-                paletteToggleButton.classList.add('active');
-                themeControls.classList.add('expanded');
-            }
-            
-            // Visual feedback
-            paletteToggleButton.style.transform = 'scale(0.9)';
-            setTimeout(() => {
-                paletteToggleButton.style.transform = '';
-            }, 150);
-            
-            // Haptic feedback
-            if (navigator.vibrate) {
-                navigator.vibrate(10);
-            }
-        });
-
-        // Close palette when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.theme-controls')) {
-                const themeControls = document.querySelector('.theme-controls');
-                themeSelector.classList.remove('active');
-                paletteToggleButton.classList.remove('active');
-                themeControls.classList.remove('expanded');
-            }
-        });
+    if (currentTheme) {
+        applyTheme(currentTheme);
+    } else if (prefersDark) {
+        applyTheme('dark');
     }
 
-    // Mode toggle (light/dark) event listener
     if (themeToggleButton) {
         themeToggleButton.addEventListener('click', () => {
-            const currentMode = document.documentElement.getAttribute('data-mode');
-            const newMode = currentMode === 'dark' ? 'light' : 'dark';
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            
-            // Add visual feedback
-            themeToggleButton.style.transform = 'scale(0.9)';
-            setTimeout(() => {
-                themeToggleButton.style.transform = '';
-            }, 150);
-            
-            applyTheme(currentTheme, newMode);
+            let newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            applyTheme(newTheme);
         });
-    }
-
-    // Theme picker event listeners
-    themePickers.forEach(picker => {
-        picker.addEventListener('click', (e) => {
-            const selectedTheme = e.target.getAttribute('data-theme');
-            const currentMode = document.documentElement.getAttribute('data-mode');
-            
-            // Add visual feedback with ripple effect
-            const ripple = document.createElement('span');
-            ripple.style.cssText = `
-                position: absolute;
-                border-radius: 50%;
-                background: rgba(255, 255, 255, 0.6);
-                pointer-events: none;
-                transform: scale(0);
-                animation: ripple 0.6s ease-out;
-                width: 40px;
-                height: 40px;
-                left: 50%;
-                top: 50%;
-                margin-left: -20px;
-                margin-top: -20px;
-            `;
-            
-            e.target.style.position = 'relative';
-            e.target.appendChild(ripple);
-            
-            setTimeout(() => {
-                ripple.remove();
-            }, 600);
-            
-            // Apply new theme
-            applyTheme(selectedTheme, currentMode);
-            
-            // Haptic feedback for mobile
-            if (navigator.vibrate) {
-                navigator.vibrate(15);
-            }
-        });
-        
-        // Add hover effects
-        picker.addEventListener('mouseenter', () => {
-            picker.style.transform = 'scale(1.1) translateY(-2px)';
-        });
-        
-        picker.addEventListener('mouseleave', () => {
-            picker.style.transform = '';
-        });
-    });
-
-    // Add CSS for ripple animation
-    if (!document.querySelector('#theme-ripple-styles')) {
-        const style = document.createElement('style');
-        style.id = 'theme-ripple-styles';
-        style.textContent = `
-            @keyframes ripple {
-                to {
-                    transform: scale(4);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
     }
 
     // Card Animations with IntersectionObserver
@@ -298,31 +164,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Update active nav when page changes (for single page apps)
     window.addEventListener('popstate', setActiveNav);
-    
-    // Add glassmorphism effect on scroll for better visual depth
-    let ticking = false;
-    function updateGlassEffects() {
-        const scrolled = window.pageYOffset;
-        const parallaxElements = document.querySelectorAll('.glass');
-        
-        parallaxElements.forEach((element, index) => {
-            const speed = (index + 1) * 0.1;
-            const yPos = -(scrolled * speed);
-            element.style.transform = `translateY(${yPos}px)`;
-        });
-        
-        ticking = false;
-    }
-    
-    function requestTick() {
-        if (!ticking) {
-            requestAnimationFrame(updateGlassEffects);
-            ticking = true;
-        }
-    }
-    
-    // Only add scroll effects on devices that support it well
-    if (window.innerWidth > 768) {
-        window.addEventListener('scroll', requestTick);
-    }
 }); 

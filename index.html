@@ -6,7 +6,6 @@
     <title>Painel de Bem-Estar</title>
     <link rel="stylesheet" href="assets/dashboard.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6H0W5V50NE"></script>
@@ -24,37 +23,24 @@
                  <h1 id="greeting"></h1>
             </div>
             <div class="header-end">
-                <div class="theme-controls">
-                    <div class="theme-selector">
-                        <button class="theme-picker active" data-theme="default" title="Purple Fusion"></button>
-                        <button class="theme-picker" data-theme="fire" title="Fire Intensity"></button>
-                        <button class="theme-picker" data-theme="ocean" title="Ocean Deep"></button>
-                        <button class="theme-picker" data-theme="forest" title="Forest Power"></button>
-                        <button class="theme-picker" data-theme="gold" title="Golden Elite"></button>
-                        <button class="theme-picker" data-theme="steel" title="Steel Force"></button>
-                    </div>
-                    <button id="palette-toggle" class="palette-toggle">
-                        <i class="material-icons">palette</i>
-                    </button>
-                    <button id="theme-toggle" class="mode-toggle">
-                        <i class="material-icons">dark_mode</i>
-                    </button>
-                </div>
+                <button id="theme-toggle" class="theme-switcher">
+                    <i class="material-icons">dark_mode</i>
+                </button>
             </div>
     </header>
 
         <main class="dashboard-main">
-            <section class="welcome-card card glass">
-                <h2 id="motivational-quote" class="motivational-text"><em>Carregando frase motivacional...</em></h2>
+            <section class="welcome-card card">
+                <h2 id="motivational-quote"><em>Carregando frase motivacional...</em></h2>
             </section>
 
-            <section class="fitness-overview card glass progressive-blur-2">
-                <h2 class="section-title"><i class="material-icons">rocket_launch</i> Resumo Fitness</h2>
-                <a href="treinos.html" class="cta-button"><i class="material-icons">fitness_center</i> Treinos</a> <br>
-                <a href="sobrenos.html" class="cta-button"><i class="material-icons">info</i> Sobre nós</a> <br>
-                <a href="mapacorpo.html" class="cta-button"><i class="material-icons">map</i> Mapa do Corpo</a> <br>
-                <a href="tabelanutricional.html" class="cta-button"><i class="material-icons">restaurant</i> Tabela Nutricional</a> <br>
-                <a href="dicas.html" class="cta-button"><i class="material-icons">lightbulb</i> Dicas</a> <br>
+            <section class="fitness-overview card">
+                <h2>Resumo Fitness</h2>
+                <a href="treinos.html" class="cta-button">Treinos</a> <br>
+                <a href="sobrenos.html" class="cta-button">Sobre nós</a> <br>
+                <a href="mapacorpo.html" class="cta-button">Mapa do Corpo</a> <br>
+                <a href="tabelanutricional.html" class="cta-button">Tabela Nutricional</a> <br>
+                <a href="dicas.html" class="cta-button">Dicas / curiosidades</a> <br>
             </section>
         </main>
 
