@@ -6,6 +6,7 @@
     <title>Painel de Bem-Estar</title>
     <link rel="stylesheet" href="assets/dashboard.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6H0W5V50NE"></script>
@@ -23,39 +24,64 @@
                  <h1 id="greeting"></h1>
             </div>
             <div class="header-end">
-                <button id="theme-toggle" class="theme-switcher">
-                    <i class="material-icons">dark_mode</i>
-                </button>
+                <div class="theme-controls">
+                    <div class="theme-selector">
+                        <button class="theme-picker active" data-theme="default" title="Purple Fusion"></button>
+                        <button class="theme-picker" data-theme="fire" title="Fire Intensity"></button>
+                        <button class="theme-picker" data-theme="ocean" title="Ocean Deep"></button>
+                        <button class="theme-picker" data-theme="forest" title="Forest Power"></button>
+                        <button class="theme-picker" data-theme="gold" title="Golden Elite"></button>
+                        <button class="theme-picker" data-theme="steel" title="Steel Force"></button>
+                    </div>
+                    <button id="palette-toggle" class="palette-toggle">
+                        <i class="material-icons">palette</i>
+                    </button>
+                    <button id="theme-toggle" class="mode-toggle">
+                        <i class="material-icons">dark_mode</i>
+                    </button>
+                </div>
             </div>
     </header>
 
         <main class="dashboard-main">
-            <section class="welcome-card card">
-                <h2 id="motivational-quote"><em>Carregando frase motivacional...</em></h2>
+            <section class="welcome-card card glass">
+                <h2 id="motivational-quote" class="motivational-text"><em>Carregando frase motivacional...</em></h2>
             </section>
 
-            <section class="fitness-overview card">
-                <h2>Resumo Fitness</h2>
-                <a href="sobrenos.html" class="cta-button">Sobre nós</a> <br>
-                <a href="mapacorpo.html" class="cta-button">Mapa do Corpo</a> <br>
-                <a href="tabelanutricional.html" class="cta-button">Tabela Nutricional</a> <br>
-                <a href="dicas.html" class="cta-button">Dicas / curiosidades</a> <br>
+            <section class="fitness-overview card glass progressive-blur-2">
+                <h2 class="section-title"><i class="material-icons">rocket_launch</i> Resumo Fitness</h2>
+                <a href="treinos.html" class="cta-button"><i class="material-icons">fitness_center</i> Treinos</a> <br>
+                <a href="sobrenos.html" class="cta-button"><i class="material-icons">info</i> Sobre nós</a> <br>
+                <a href="mapacorpo.html" class="cta-button"><i class="material-icons">map</i> Mapa do Corpo</a> <br>
+                <a href="tabelanutricional.html" class="cta-button"><i class="material-icons">restaurant</i> Tabela Nutricional</a> <br>
+                <a href="dicas.html" class="cta-button"><i class="material-icons">lightbulb</i> Dicas</a> <br>
             </section>
-
-            <section class="quick-actions card">
-                <h2>Ações Rápidas</h2>
-                <a href="pasttreinos/peito/peito.html"><button class="action-button">Peito</button></a>
-                <a href="pasttreinos/costas/costas.html"><button class="action-button">Costas</button></a>
-                <a href="pasttreinos/ombro/ombro.html"><button class="action-button">Ombro</button></a>
-                <a href="pasttreinos/pernas/perna.html"><button class="action-button">Pernas</button></a>
-                <a href="pasttreinos/braço/braço.html"><button class="action-button">Braço</button></a>
-        </section>
-    </main>
+        </main>
 
         <footer class="dashboard-footer">
             <p>Site criado e idealizado por Vitor Gurgel</p>
         </footer>
     </div>
+    
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav" role="navigation" aria-label="Navegação principal">
+        <button class="nav-item active" data-page="home" aria-label="Início">
+            <i class="material-icons">home</i>
+        </button>
+        <button class="nav-item" data-page="workout" aria-label="Treinos">
+            <i class="material-icons">fitness_center</i>
+        </button>
+        <button class="nav-item" data-page="nutrition" aria-label="Nutrição">
+            <i class="material-icons">restaurant</i>
+        </button>
+        <button class="nav-item" data-page="progress" aria-label="Progresso">
+            <i class="material-icons">trending_up</i>
+        </button>
+        <button class="nav-item" data-page="profile" aria-label="Perfil">
+            <i class="material-icons">person</i>
+        </button>
+    </nav>
+    
     <script src="assets/dashboard.js"></script>
 </body>
 </html>

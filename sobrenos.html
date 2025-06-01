@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre Nós</title>
-    <link rel="stylesheet" href="../assets/dashboard.css">
+    <link rel="stylesheet" href="assets/dashboard.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
@@ -21,7 +21,7 @@
     <div class="dashboard-container">
         <header class="dashboard-header">
             <div class="header-start">
-                <a href="../index.html" class="cta-button" style="margin-right: 15px; background-color: transparent; border: 1px solid var(--header-text-color); padding: 8px 15px; display: inline-flex; align-items: center;"><i class="material-icons" style="margin-right: 5px; vertical-align: middle;">arrow_back</i> Voltar</a>
+                <a href="index.html" class="cta-button" style="margin-right: 15px; background-color: transparent; border: 1px solid var(--header-text-color); padding: 8px 15px; display: inline-flex; align-items: center;"><i class="material-icons" style="margin-right: 5px; vertical-align: middle;">arrow_back</i> Voltar</a>
                 <h1>Sobre Nós</h1>
             <div class="header-end"></div>
         </header>
@@ -37,7 +37,7 @@
 
                     <h3>O que você encontra aqui</h3>
                     <p>
-                        🏋️‍♂️ Treinos de Atletas de Elite
+                        Treinos de Atletas de Elite
                         Inspirados pelos melhores, reunimos os treinos completos de grandes nomes do fisiculturismo como Jorlan, Johaan, Arnold Schwarzenegger, Chris Bumstead (CBum), Ramon Dino, Cruz, entre outros. Cada treino é detalhado com os exercícios, séries, repetições e o estilo de treino adotado por esses atletas. Além disso, você pode assistir aos vídeos desses treinos diretamente na página, tornando sua experiência ainda mais imersiva e motivadora.
                     </p>
 
@@ -76,5 +76,26 @@
                 <p>Site criado e idealizado por Vitor Gurgel</p>
             </footer>
         </div>
+        
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav" role="navigation" aria-label="Navegação principal">
+        <button class="nav-item" data-page="home" aria-label="Início">
+            <i class="material-icons">home</i>
+        </button>
+        <button class="nav-item" data-page="workout" aria-label="Treinos">
+            <i class="material-icons">fitness_center</i>
+        </button>
+        <button class="nav-item" data-page="nutrition" aria-label="Nutrição">
+            <i class="material-icons">restaurant</i>
+        </button>
+        <button class="nav-item" data-page="progress" aria-label="Progresso">
+            <i class="material-icons">trending_up</i>
+        </button>
+        <button class="nav-item active" data-page="profile" aria-label="Perfil">
+            <i class="material-icons">person</i>
+        </button>
+    </nav>
+    
+    <script src="assets/dashboard.js"></script>
 </body>
 </html>
